@@ -9,7 +9,7 @@
             "homepage": "www.innovaweb.cl"
         }
     ],
-    "homepage": "https://github.com/innovaweb/transbank",
+    "homepage": "https://github.com/innovawebcl/transbank",
     "keywords": ["Laravel", "Transbank"],
     "require": {
         "illuminate/support": "~5|~6|~7|~8"
