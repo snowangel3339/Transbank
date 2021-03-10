@@ -2,7 +2,7 @@
 
 All notable changes to `Transbank` will be documented in this file.
 
-## Version 1.0
+## v0.1-beta
 
 ### Added
-- Everything
+-  Webpay Plus API REST integration
