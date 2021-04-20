@@ -31,9 +31,7 @@ class WebpayPlus
                                 $environment = self::INTEGRATION)
     {
         if ($environment === self::PRODUCTION and !empty($webpay_plus_commerce_code) and !empty($webpay_plus_api_key)) {
-            WPPlus::setCommerceCode($webpay_plus_commerce_code);
-            WPPlus::setApiKey($webpay_plus_api_key);
-            WPPlus::setIntegrationType('LIVE');
+            WPPlus::configureForProduction($webpay_plus_commerce_code, $webpay_plus_api_key);
         } else {
             WPPlus::configureForTesting();
         }
