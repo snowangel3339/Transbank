@@ -13,7 +13,7 @@
     "keywords": ["Laravel", "Transbank"],
     "require": {
         "illuminate/support": "~5|~6|~7|~8",
-        "transbank/transbank-sdk": "1.10.1"
+        "transbank/transbank-sdk": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~9.0",

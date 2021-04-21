@@ -2,6 +2,10 @@
 
 All notable changes to `Transbank` will be documented in this file.
 
+## v1.1.1 - 2021-04-21
+### Fixed
+- Se cambia a "transbank/transbank-sdk": "~1.0"
+
 ## v1.1.0 - 2021-04-21
 ### Fixed
 - Se revierte la compatibilidad a transbank-php-sdk 1.10.1
