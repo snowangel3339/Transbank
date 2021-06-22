@@ -2,6 +2,10 @@
 
 All notable changes to `Transbank` will be documented in this file.
 
+## v1.2.0 - 2021-06-22
+### Added
+- Oneclick Mall API REST Integration
+
 ## v1.1.1 - 2021-04-21
 ### Fixed
 - Se cambia a "transbank/transbank-sdk": "~1.0"
