@@ -1,6 +1,11 @@
 # Changelog
 
 All notable changes to `Transbank` will be documented in this file.
+
+## v2.1.0 - 2021-07-20
+### Update
+- Update versión composer
+---
 ## v2.0.1 - 2021-07-20
 ### Added
 - Update commerce code one click mall develop mode
