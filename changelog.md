@@ -1,7 +1,10 @@
 # Changelog
 
 All notable changes to `Transbank` will be documented in this file.
-
+## v2.0.1 - 2021-07-20
+### Added
+- Update commerce code one click mall develop mode
+---
 ## v2.0.0 - 2021-07-20
 ### Added
 - Update transbank php sdk from 1.x to 2.0.6

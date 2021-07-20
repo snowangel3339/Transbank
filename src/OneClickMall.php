@@ -19,7 +19,7 @@ class OneClickMall
 
     public $token;
     public $url;
-    public $commerce_code;
+    public $commerce_code = 597055555543;
 
     public function __construct($webpay_plus_commerce_code = '',
                                 $webpay_plus_api_key = '',
@@ -29,9 +29,7 @@ class OneClickMall
             OneClick::configureForProduction($webpay_plus_commerce_code, $webpay_plus_api_key);
             $this->commerce_code = $webpay_plus_commerce_code;
         } else {
-            OneClick::configureForTestingDeferred();
-            $this->commerce_code = 597055555543;
-
+            OneClick::configureForTesting();
         }
     }
 
