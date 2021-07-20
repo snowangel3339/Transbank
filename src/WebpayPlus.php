@@ -6,6 +6,7 @@ namespace Innovaweb\Transbank;
 use Innovaweb\Transbank\Helpers\HelperRedirect;
 use Transbank\Webpay\WebpayPlus as WPPlus;
 use Transbank\Webpay\WebpayPlus\Exceptions\TransactionCreateException;
+use Transbank\Webpay\WebpayPlus\Transaction as Transaction;
 
 class WebpayPlus
 {
@@ -26,9 +27,9 @@ class WebpayPlus
      * @param string $webpay_plus_api_key Api Key del cliente para WebpayPlus
      * @param string $environment Ambiente de [ 'integration' , 'production']
      */
-    public function __construct($webpay_plus_commerce_code = '',
-                                $webpay_plus_api_key = '',
-                                $environment = self::INTEGRATION)
+    public function __construct(string $webpay_plus_commerce_code = '',
+                                string $webpay_plus_api_key = '',
+                                string $environment = self::INTEGRATION)
     {
         if ($environment === self::PRODUCTION and !empty($webpay_plus_commerce_code) and !empty($webpay_plus_api_key)) {
             WPPlus::configureForProduction($webpay_plus_commerce_code, $webpay_plus_api_key);
@@ -52,7 +53,7 @@ class WebpayPlus
 
         try {
 
-            $response = WPPlus\Transaction::create($buy_order, $session_id, $amount, $url_return);
+            $response = (new Transaction)->create($buy_order, $session_id, $amount, $url_return);
 
             $this->token = $response->getToken();
             $this->url = $response->getUrl();
@@ -62,12 +63,7 @@ class WebpayPlus
                 'response' => $response
             ];
 
-        } catch (TransactionCreateException $exception) {
-            return [
-                'status' => 'error',
-                'exception' => $exception->getMessage(),
-            ];
-        } catch (\Exception $exception) {
+        } catch (TransactionCreateException | \Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -89,7 +85,7 @@ class WebpayPlus
             if (!$token_ws) {
                 $token_ws = $_POST['token_ws'];
             }
-            $response = WPPlus\Transaction::commit($token_ws);
+            $response = (new Transaction)->commit($token_ws);
 
             return [
                 'status' => 'success',
@@ -115,7 +111,7 @@ class WebpayPlus
     public function refundTransaction($token, $amount)
     {
         try {
-            $response = WPPlus\Transaction::refund($token, $amount);
+            $response =  (new Transaction)->refund($token, $amount);
             return [
                 'status' => 'success',
                 'response' => $response
@@ -139,7 +135,7 @@ class WebpayPlus
     public function getTransactionStatus($token)
     {
         try {
-            $response = WPPlus\Transaction::getStatus($token);
+            $response =  (new Transaction)->getStatus($token);
             return [
                 'status' => 'success',
                 'response' => $response

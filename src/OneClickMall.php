@@ -3,8 +3,11 @@
 
 namespace Innovaweb\Transbank;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Innovaweb\Transbank\Helpers\HelperRedirect;
 use Transbank\Webpay\Oneclick as OneClick;
+use Transbank\Webpay\Oneclick\MallInscription as MallInscription;
+use Transbank\Webpay\Oneclick\MallTransaction as MallTransaction;
 
 class OneClickMall
 {
@@ -23,10 +26,10 @@ class OneClickMall
                                 $environment = self::INTEGRATION)
     {
         if ($environment === self::PRODUCTION and !empty($webpay_plus_commerce_code) and !empty($webpay_plus_api_key)) {
-            OneClick::configureOneclickMallDeferredForTesting($webpay_plus_commerce_code, $webpay_plus_api_key);
+            OneClick::configureForProduction($webpay_plus_commerce_code, $webpay_plus_api_key);
             $this->commerce_code = $webpay_plus_commerce_code;
         } else {
-            OneClick::configureOneclickMallForTesting();
+            OneClick::configureForTestingDeferred();
             $this->commerce_code = 597055555543;
 
         }
@@ -41,7 +44,7 @@ class OneClickMall
 
         try {
 
-            $response = OneClick\MallInscription::start($username, $email, $url_return);
+            $response = (new MallInscription)->start($username, $email, $url_return);
             $this->token = $response->getToken();
             $this->url = $response->getUrlWebpay();
 
@@ -51,6 +54,11 @@ class OneClickMall
             ];
 
         } catch (\Exception $exception) {
+            return [
+                'status' => 'error',
+                'exception' => $exception->getMessage(),
+            ];
+        } catch (GuzzleException $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -68,7 +76,7 @@ class OneClickMall
             if (!$tbk_token) {
                 $tbk_token  = $_POST['TBK_TOKEN'];
             }
-            $response = OneClick\MallInscription::finish($tbk_token );
+            $response = (new MallInscription)->finish($tbk_token );
 
             if((int) $response->getResponseCode() === 0){
                 return [
@@ -106,7 +114,7 @@ class OneClickMall
             ]
         ];
         try {
-            $response = OneClick\MallTransaction::authorize($username, $tbkUser, $order_id, $details);
+            $response = (new MallTransaction)->authorize($username, $tbkUser, $order_id, $details);
             return [
                 'status' => 'success',
                 'response' => $response
@@ -127,7 +135,7 @@ class OneClickMall
     public function getStatus($buyOrder)
     {
         try {
-            $response = OneClick\MallTransaction::getStatus($buyOrder);
+            $response = (new MallTransaction)->status($buyOrder);
             return [
                 'status' => 'success',
                 'response' => $response
