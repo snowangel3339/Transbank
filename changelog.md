@@ -2,6 +2,10 @@
 
 All notable changes to `Transbank` will be documented in this file.
 
+## v2.2.0 - 2021-07-26
+### Update
+- Added installments number to pay in one click mall
+---
 ## v2.1.0 - 2021-07-20
 ### Update
 - Update versión composer
