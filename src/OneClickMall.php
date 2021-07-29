@@ -101,14 +101,14 @@ class OneClickMall
      * authorize
 
      */
-    public function authorize($username, $tbkUser, $order_id, $amount)
+    public function authorize($username, $tbkUser, $order_id, $amount, $installments_number = 1)
     {
         $details = [
             [
                 "commerce_code" => $this->commerce_code,
                 "buy_order" => $order_id,
                 "amount" => $amount,
-                "installments_number" => 1
+                "installments_number" => $installments_number
             ]
         ];
         try {
