@@ -1,6 +1,9 @@
 # Changelog
 
 All notable changes to `Transbank` will be documented in this file.
+## v2.3.0 - 2021-10-04
+### Update
+- Added code commerce params on oneclick authorize
 
 ## v2.2.0 - 2021-07-26
 ### Update
