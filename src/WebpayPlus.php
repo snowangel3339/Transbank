@@ -158,7 +158,7 @@ class WebpayPlus
      */
     public function getTransactionStatus($token)
     {
-        return $this->getTransactionStatus($token);
+        return $this->getStatusTransaction($token);
     }
 
     public function redirectHTML($url = '', $token = '')

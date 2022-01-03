@@ -1,6 +1,10 @@
 # Changelog
 
 All notable changes to `Transbank` will be documented in this file.
+## v2.5.0 - 2022-01-03
+### Fixed
+- get status transaction by token webpay plus
+
 ## v2.4.0 - 2022-01-03
 ### Update
 - Fixed get status transaction by token webpay plus
