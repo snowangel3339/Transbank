@@ -111,7 +111,31 @@ class WebpayPlus
     public function refundTransaction($token, $amount)
     {
         try {
-            $response =  (new Transaction)->refund($token, $amount);
+            $response = (new Transaction)->refund($token, $amount);
+            return [
+                'status' => 'success',
+                'response' => $response
+            ];
+
+        } catch (\Exception $exception) {
+            return [
+                'status' => 'error',
+                'exception' => $exception->getMessage(),
+            ];
+        }
+    }
+
+    /**
+     * getStatusTransaction
+     *
+     * @param string $token Token de la transacción. Largo: 64.
+     * @return array en caso de success retorna objecto con datos de la transacción
+     *
+     */
+    public function getStatusTransaction($token)
+    {
+        try {
+            $response = (new Transaction)->status($token);
             return [
                 'status' => 'success',
                 'response' => $response
@@ -134,19 +158,7 @@ class WebpayPlus
      */
     public function getTransactionStatus($token)
     {
-        try {
-            $response =  (new Transaction)->getStatus($token);
-            return [
-                'status' => 'success',
-                'response' => $response
-            ];
-
-        } catch (\Exception $exception) {
-            return [
-                'status' => 'error',
-                'exception' => $exception->getMessage(),
-            ];
-        }
+        return $this->getTransactionStatus($token);
     }
 
     public function redirectHTML($url = '', $token = '')
