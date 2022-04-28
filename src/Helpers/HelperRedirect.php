@@ -7,9 +7,9 @@ class HelperRedirect
 
     public static function redirectHTML($url, $token = '', $type = 'webpay')
     {
-        if($type == 'webpay'){
+        if ($type == 'webpay') {
             return self::htmlWrapWebPay($url, $token);
-        }else{
+        } else {
             return self::htmlWrapOneClick($url, $token);
 
         }
