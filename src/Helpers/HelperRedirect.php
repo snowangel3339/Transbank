@@ -14,6 +14,14 @@ class HelperRedirect
         }
     }
 
+    public static function dataArray($url, $token)
+    {
+        return [
+            'url' => $url,
+            'token' => $token
+        ];
+    }
+
     private static function htmlWrapWebPay($url, $token)
     {
         $formName = 'webpay-redirect-form-' . uniqid();
@@ -48,14 +56,6 @@ class HelperRedirect
                 <script>document.getElementById("' . $formName . '").submit();</script>
             </body>
         </html>';
-    }
-
-    private static function dataArray($url, $token)
-    {
-        return [
-            'url' => $url,
-            'token' => $token
-        ];
     }
 
 }
