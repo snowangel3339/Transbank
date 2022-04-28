@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to `Transbank` will be documented in this file.
+
+## v2.5.0 - 2022-01-03
+### Added
+- Laravel illuminate/support 9
+### Fixed
+- get status transaction by token webpay plus
+
 ## v2.5.0 - 2022-01-03
 ### Fixed
 - get status transaction by token webpay plus
