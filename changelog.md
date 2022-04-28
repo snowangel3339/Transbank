@@ -1,6 +1,14 @@
 # Changelog
 
 All notable changes to `Transbank` will be documented in this file.
+
+## v2.6.0 - 2022-04-28
+### Added
+- Laravel illuminate/support 9
+- HelperRedirect function to return data array
+### Updated
+- Transbank SDK ^2.0
+
 ## v2.5.0 - 2022-01-03
 ### Fixed
 - get status transaction by token webpay plus

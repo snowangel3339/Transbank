@@ -7,13 +7,19 @@ class HelperRedirect
 
     public static function redirectHTML($url, $token = '', $type = 'webpay')
     {
-        if($type == 'webpay'){
+        if ($type == 'webpay') {
             return self::htmlWrapWebPay($url, $token);
-        }else{
+        } else {
             return self::htmlWrapOneClick($url, $token);
-
         }
+    }
 
+    public static function dataArray($url, $token)
+    {
+        return [
+            'url' => $url,
+            'token' => $token
+        ];
     }
 
     private static function htmlWrapWebPay($url, $token)
