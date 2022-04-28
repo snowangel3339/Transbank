@@ -11,9 +11,7 @@ class HelperRedirect
             return self::htmlWrapWebPay($url, $token);
         } else {
             return self::htmlWrapOneClick($url, $token);
-
         }
-
     }
 
     private static function htmlWrapWebPay($url, $token)
@@ -50,6 +48,14 @@ class HelperRedirect
                 <script>document.getElementById("' . $formName . '").submit();</script>
             </body>
         </html>';
+    }
+
+    private static function dataArray($url, $token)
+    {
+        return [
+            'url' => $url,
+            'token' => $token
+        ];
     }
 
 }
