@@ -82,6 +82,36 @@ class HelperTransbankResponseCode
     }
 
     /**
+     * ResponseCommerceCode
+     *
+     * @param string $code response_commerce_code.
+     * @return string retorna el significado del código, Código de respuesta de la transacción al comercio.
+     *
+     */
+    public static function ResponseCommerceCode($code)
+    {
+        $code = strval($code);
+        try {
+            $codes = [
+                '-1' => 'Tarjeta inválida.',
+                '-2' => 'Error de conexión.',
+                '-3' => 'Excede monto máximo.',
+                '-4' => 'Fecha de expiración inválida.',
+                '-5' => 'Problema en autenticación.',
+                '-6' => 'Rechazo general.',
+                '-7' => 'Tarjeta bloqueada.',
+                '-8' => 'Tarjeta vencida.',
+                '-9' => 'Transacción no soportada.',
+                '-10' => 'Problema en la transacción.',
+                '-11' => 'Excede límite de reintentos de rechazos (Próximamente).',
+            ];
+            return $codes[$code];
+        } catch (\Exception $exception) {
+            return 'Exception : Código no encontrado.';
+        }
+    }
+
+    /**
      * Status
      *
      * @param string $code status.
@@ -137,7 +167,7 @@ class HelperTransbankResponseCode
      * RefundCode
      *
      * @param string $code refund_code.
-     * @return string retorna el significado del código, Tipo de pago de la transacción.
+     * @return string retorna el significado del código, Reembolso de la transacción.
      *
      */
     public static function RefundCode($code)
