@@ -35,19 +35,19 @@ class HelperTransbankResponseCode
                 'ACS2' => 'Autenticación fallida extranjera.',
                 // Para venta extranjera, estos son algunos de los códigos:
 
-                'TSYS' => 'Autenticación exitosa Sin fricción. Resultado autenticación: Autenticación Exitosa',
-                'TSAS' => 'Intento, tarjeta no enrolada / emisor no disponible. Resultado autenticación: Autenticación Exitosa',
-                'TSNS' => 'Fallido, no autenticado, denegado / no permite intentos. Resultado autenticación: Autenticación denegada',
-                'TSRS' => 'Autenticación rechazada - sin fricción. Resultado autenticación: Autenticación rechazada',
-                'TSUS' => 'Autenticación no se pudo realizar por problema técnico u otro motivo. Resultado autenticación: Autenticación fallida',
-                'TSCF' => 'Autenticación con fricción (No aceptada por el comercio). Resultado autenticación: Autenticación incompleta',
-                'TSYF' => 'Autenticación exitosa con fricción. Resultado autenticación: Autenticación exitosa',
-                'TSNF' => 'No autenticado. Transacción denegada con fricción. Resultado autenticación: Autenticación denegada',
-                'TSUF' => 'Autenticación con fricción no se pudo realizar por problema técnico u otro. Resultado autenticación: Autenticación fallida',
-                'NPC' => 'Comercio no Participa. Resultado autenticación: Comercio/BIN no participa',
-                'NPB' => 'BIN no participa. Resultado autenticación: Comercio/BIN no participa',
-                'NPCB' => 'Comercio y BIN no participan. Resultado autenticación: Comercio/BIN no participa',
-                'SPCB' => 'Comercio y BIN sí participan. Resultado autenticación: Autorización incompleta',
+                'TSYS' => 'Autenticación exitosa Sin fricción. Resultado autenticación: Autenticación Exitosa.',
+                'TSAS' => 'Intento, tarjeta no enrolada / emisor no disponible. Resultado autenticación: Autenticación Exitosa.',
+                'TSNS' => 'Fallido, no autenticado, denegado / no permite intentos. Resultado autenticación: Autenticación denegada.',
+                'TSRS' => 'Autenticación rechazada - sin fricción. Resultado autenticación: Autenticación rechazada.',
+                'TSUS' => 'Autenticación no se pudo realizar por problema técnico u otro motivo. Resultado autenticación: Autenticación fallida.',
+                'TSCF' => 'Autenticación con fricción (No aceptada por el comercio). Resultado autenticación: Autenticación incompleta.',
+                'TSYF' => 'Autenticación exitosa con fricción. Resultado autenticación: Autenticación exitosa.',
+                'TSNF' => 'No autenticado. Transacción denegada con fricción. Resultado autenticación: Autenticación denegada.',
+                'TSUF' => 'Autenticación con fricción no se pudo realizar por problema técnico u otro. Resultado autenticación: Autenticación fallida.',
+                'NPC' => 'Comercio no Participa. Resultado autenticación: Comercio/BIN no participa.',
+                'NPB' => 'BIN no participa. Resultado autenticación: Comercio/BIN no participa.',
+                'NPCB' => 'Comercio y BIN no participan. Resultado autenticación: Comercio/BIN no participa.',
+                'SPCB' => 'Comercio y BIN sí participan. Resultado autenticación: Autorización incompleta.',
 
             ];
             return $codes[$code];
@@ -126,6 +126,39 @@ class HelperTransbankResponseCode
                 'S2' => '2 cuotas sin interés.',
                 'NC' => 'N Cuotas sin interés.',
                 'VP' => 'Venta Prepago.',
+            ];
+            return $codes[$code];
+        } catch (\Exception $exception) {
+            return 'Exception : Código no encontrado.';
+        }
+    }
+
+    /**
+     * RefundCode
+     *
+     * @param string $code refund_code.
+     * @return string retorna el significado del código, Tipo de pago de la transacción.
+     *
+     */
+    public static function RefundCode($code)
+    {
+        $code = strtoupper(strval($code));
+        try {
+            $codes = [
+                '304' => 'Validación de campos de entrada nulos.',
+                '245' => 'Código de comercio no existe.',
+                '22' => 'El comercio no se encuentra activo.',
+                '316' => 'El comercio indicado no corresponde al certificado o no es hijo del comercio MALL en caso de transacciones MALL.',
+                '308' => 'Operación no permitida.',
+                '274' => 'Transacción no encontrada.',
+                '16' => 'La transacción no permite anulación.',
+                '292' => 'La transacción no está autorizada.',
+                '284' => 'Periodo de anulación excedido.',
+                '310' => 'Transacción anulada previamente.',
+                '311' => 'Monto a anular excede el saldo disponible para anular.',
+                '312' => 'Error genérico para anulaciones.',
+                '315' => 'Error del autorizador.',
+                '53' => 'La transacción no permite anulación parcial de transacciones con cuotas.',
             ];
             return $codes[$code];
         } catch (\Exception $exception) {
