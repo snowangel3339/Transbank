@@ -31,7 +31,7 @@ class TransbankServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/transbank.php', 'transbank');
+        $this->mergeConfigFrom(__DIR__ . '/../config/transbank.php', 'transbank');
 
         // Register the service the package provides.
         $this->app->singleton('transbank', function ($app) {
@@ -58,7 +58,7 @@ class TransbankServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/transbank.php' => config_path('transbank.php'),
+            __DIR__ . '/../config/transbank.php' => config_path('transbank.php'),
         ], 'transbank.config');
 
         // Publishing the views.

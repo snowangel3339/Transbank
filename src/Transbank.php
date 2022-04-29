@@ -6,7 +6,8 @@ class Transbank
 {
     // Build wonderful things
 
-    public static function Hello(){
+    public static function Hello()
+    {
         return [
             'message' => 'hi, universe!'
         ];
