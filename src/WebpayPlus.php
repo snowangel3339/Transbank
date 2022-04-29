@@ -3,6 +3,8 @@
 
 namespace Innovaweb\Transbank;
 
+use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 use Innovaweb\Transbank\Helpers\HelperRedirect;
 use Transbank\Webpay\WebpayPlus as WPPlus;
 use Transbank\Webpay\WebpayPlus\Exceptions\TransactionCreateException;
@@ -47,6 +49,7 @@ class WebpayPlus
      * @param string $url_return URL del comercio, a la cual Webpay redireccionará posterior al proceso de autorización. Largo máximo: 256
      * @return array en caso de success retorna un objeto con token: con Token de la transacción. Largo: 64, string url: URL de formulario de pago Webpay. Largo máximo: 255.
      *
+     * @throws GuzzleException
      */
     public function createTransaction($buy_order, $session_id, $amount, $url_return)
     {
@@ -63,7 +66,12 @@ class WebpayPlus
                 'response' => $response
             ];
 
-        } catch (TransactionCreateException | \Exception $exception) {
+        } catch (TransactionCreateException $exception) {
+            return [
+                'status' => 'error',
+                'exception' => $exception->getMessage(),
+            ];
+        } catch (Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -77,6 +85,7 @@ class WebpayPlus
      * @param string $token_ws Token de la transacción. Largo: 64.
      * @return array en caso de success retorna objecto con datos de la transacción
      *
+     * @throws GuzzleException
      */
     public function commitTransaction($token_ws)
     {
@@ -92,7 +101,7 @@ class WebpayPlus
                 'response' => $response
             ];
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -107,6 +116,7 @@ class WebpayPlus
      * @param float $amount Monto de la transacción. Máximo 2 decimales para USD. Largo máximo: 17
      * @return array en caso de success retorna objecto con datos del reembolso
      *
+     * @throws GuzzleException
      */
     public function refundTransaction($token, $amount)
     {
@@ -117,7 +127,7 @@ class WebpayPlus
                 'response' => $response
             ];
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -130,7 +140,7 @@ class WebpayPlus
      *
      * @param string $token Token de la transacción. Largo: 64.
      * @return array en caso de success retorna objecto con datos de la transacción
-     *
+     * @throws GuzzleException
      */
     public function getStatusTransaction($token)
     {
@@ -141,7 +151,7 @@ class WebpayPlus
                 'response' => $response
             ];
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -154,9 +164,9 @@ class WebpayPlus
      *
      * @param string $token Token de la transacción. Largo: 64.
      * @return array en caso de success retorna objecto con datos de la transacción
-     *
+     * @throws GuzzleException
      */
-    public function getTransactionStatus($token)
+    public function getTransactionStatus(string $token)
     {
         return $this->getStatusTransaction($token);
     }
@@ -166,5 +176,12 @@ class WebpayPlus
         $url = empty($url) ? $this->url : $url;
         $token = empty($token) ? $this->token : $token;
         return HelperRedirect::redirectHTML($url, $token);
+    }
+
+    public function dataArray($url = '', $token = '')
+    {
+        $url = empty($url) ? $this->url : $url;
+        $token = empty($token) ? $this->token : $token;
+        return HelperRedirect::dataArray($url, $token);
     }
 }

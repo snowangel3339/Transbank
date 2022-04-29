@@ -3,6 +3,7 @@
 
 namespace Innovaweb\Transbank;
 
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Innovaweb\Transbank\Helpers\HelperRedirect;
 use Transbank\Webpay\Oneclick as OneClick;
@@ -51,7 +52,7 @@ class OneClickMall
                 'response' => $response
             ];
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -72,16 +73,16 @@ class OneClickMall
     {
         try {
             if (!$tbk_token) {
-                $tbk_token  = $_POST['TBK_TOKEN'];
+                $tbk_token = $_POST['TBK_TOKEN'];
             }
-            $response = (new MallInscription)->finish($tbk_token );
+            $response = (new MallInscription)->finish($tbk_token);
 
-            if((int) $response->getResponseCode() === 0){
+            if ((int)$response->getResponseCode() === 0) {
                 return [
                     'status' => 'success',
                     'response' => $response
                 ];
-            }else{
+            } else {
                 return [
                     'status' => 'error',
                     'exception' => $response,
@@ -89,7 +90,7 @@ class OneClickMall
             }
 
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -99,7 +100,6 @@ class OneClickMall
 
     /**
      * authorize
-
      */
     public function authorize($username, $tbkUser, $order_id, $details)
     {
@@ -111,7 +111,7 @@ class OneClickMall
                 'response' => $response
             ];
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
@@ -132,7 +132,7 @@ class OneClickMall
                 'response' => $response
             ];
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
