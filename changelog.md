@@ -20,6 +20,8 @@ All notable changes to `Transbank` will be documented in this file.
 - Source Code
 - GuzzleException
 
+---
+
 ## v2.7.0 - 2022-04-29
 
 ### Added
@@ -37,6 +39,8 @@ All notable changes to `Transbank` will be documented in this file.
 
 - Source Code
 
+---
+
 ## v2.6.0 - 2022-04-28
 
 ### Added
@@ -48,11 +52,15 @@ All notable changes to `Transbank` will be documented in this file.
 
 - Transbank SDK ^2.0
 
+---
+
 ## v2.5.0 - 2022-01-03
 
 ### Fixed
 
 - get status transaction by token webpay plus
+
+---
 
 ## v2.4.0 - 2022-01-03
 
@@ -60,11 +68,15 @@ All notable changes to `Transbank` will be documented in this file.
 
 - Fixed get status transaction by token webpay plus
 
+---
+
 ## v2.3.0 - 2021-10-04
 
 ### Update
 
 - Added code commerce params on oneclick authorize
+
+---
 
 ## v2.2.0 - 2021-07-26
 
