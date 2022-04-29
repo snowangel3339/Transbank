@@ -2,6 +2,18 @@
 
 All notable changes to `Transbank` will be documented in this file.
 
+## v2.8.0 - 2022-04-29
+### Added
+- Laravel illuminate/support 9
+- HelperRedirect function to return data array
+- Refund Response Codes
+- Response Commerce Code Response Codes
+### Updated
+- VCI Response Codes
+### Fixed
+- Source Code
+- GuzzleException
+
 ## v2.7.0 - 2022-04-29
 ### Added
 - Laravel illuminate/support 9
@@ -12,7 +24,6 @@ All notable changes to `Transbank` will be documented in this file.
 - VCI Response Codes
 ### Fixed
 - Source Code
-
 
 ## v2.6.0 - 2022-04-28
 ### Added
