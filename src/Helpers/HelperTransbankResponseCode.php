@@ -4,6 +4,8 @@
 namespace Innovaweb\Transbank\Helpers;
 
 
+use Exception;
+
 class HelperTransbankResponseCode
 {
 
@@ -51,7 +53,7 @@ class HelperTransbankResponseCode
 
             ];
             return $codes[$code];
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return 'Exception : Código no encontrado.';
         }
     }
@@ -76,7 +78,7 @@ class HelperTransbankResponseCode
                 '-5' => 'Rechazo - Transacción con riesgo de posible fraude.',
             ];
             return $codes[$code];
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return 'Exception : Código no encontrado.';
         }
     }
@@ -106,7 +108,7 @@ class HelperTransbankResponseCode
                 '-11' => 'Excede límite de reintentos de rechazos (Próximamente).',
             ];
             return $codes[$code];
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return 'Exception : Código no encontrado.';
         }
     }
@@ -132,7 +134,7 @@ class HelperTransbankResponseCode
                 'CAPTURED' => 'Transacción capturada.',
             ];
             return $codes[$code];
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return 'Exception : Código no encontrado.';
         }
     }
@@ -158,7 +160,7 @@ class HelperTransbankResponseCode
                 'VP' => 'Venta Prepago.',
             ];
             return $codes[$code];
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return 'Exception : Código no encontrado.';
         }
     }
@@ -191,7 +193,7 @@ class HelperTransbankResponseCode
                 '53' => 'La transacción no permite anulación parcial de transacciones con cuotas.',
             ];
             return $codes[$code];
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return 'Exception : Código no encontrado.';
         }
     }
