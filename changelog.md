@@ -1,6 +1,11 @@
 # Changelog
 
 All notable changes to `Transbank` will be documented in this file.
+## v2.10.0 - 2023-04-10
+
+### Added
+
+- OneClick Delete Inscription function
 
 ## v2.9.0 - 2022-04-29
 

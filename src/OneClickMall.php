@@ -22,10 +22,11 @@ class OneClickMall
     public $url;
     public $commerce_code = 597055555543;
 
-    public function __construct($webpay_plus_commerce_code = '',
-                                $webpay_plus_api_key = '',
-                                $environment = self::INTEGRATION)
-    {
+    public function __construct(
+        $webpay_plus_commerce_code = '',
+        $webpay_plus_api_key = '',
+        $environment = self::INTEGRATION
+    ) {
         if ($environment === self::PRODUCTION and !empty($webpay_plus_commerce_code) and !empty($webpay_plus_api_key)) {
             OneClick::configureForProduction($webpay_plus_commerce_code, $webpay_plus_api_key);
             $this->commerce_code = $webpay_plus_commerce_code;
@@ -51,7 +52,6 @@ class OneClickMall
                 'status' => 'success',
                 'response' => $response
             ];
-
         } catch (Exception $exception) {
             return [
                 'status' => 'error',
@@ -88,8 +88,6 @@ class OneClickMall
                     'exception' => $response,
                 ];
             }
-
-
         } catch (Exception $exception) {
             return [
                 'status' => 'error',
@@ -110,7 +108,6 @@ class OneClickMall
                 'status' => 'success',
                 'response' => $response
             ];
-
         } catch (Exception $exception) {
             return [
                 'status' => 'error',
@@ -131,8 +128,34 @@ class OneClickMall
                 'status' => 'success',
                 'response' => $response
             ];
-
         } catch (Exception $exception) {
+            return [
+                'status' => 'error',
+                'exception' => $exception->getMessage(),
+            ];
+        }
+    }
+
+
+    /**
+     * deleteInscription
+     *
+     */
+    public function deleteInscription($tbkUser, $username)
+    {
+        try {
+            $response = (new MallInscription)->delete($tbkUser, $username);
+
+            return [
+                'status' => 'success',
+                'response' => $response
+            ];
+        } catch (Exception $exception) {
+            return [
+                'status' => 'error',
+                'exception' => $exception->getMessage(),
+            ];
+        } catch (GuzzleException $exception) {
             return [
                 'status' => 'error',
                 'exception' => $exception->getMessage(),
