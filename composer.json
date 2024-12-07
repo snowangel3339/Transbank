@@ -22,12 +22,12 @@
         "Transbank"
     ],
     "require": {
-        "illuminate/support": "~5|~6|~7|~8|~9",
+        "illuminate/support": "~11",
         "transbank/transbank-sdk": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~9.0",
-        "orchestra/testbench": "~5|~6"
+        "phpunit/phpunit": "~10.0",
+        "orchestra/testbench": "~9"
     },
     "autoload": {
         "psr-4": {
